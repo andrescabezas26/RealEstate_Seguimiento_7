@@ -34,13 +34,13 @@ public class Main{
 		System.out.println(
 				"1. Agregar un Edificio\n" +
 				"2. Agregar un Apartamento a un Edificio\n" +
-				"3. Agregar un Dueño de apartamento\n" +
+				"3. Agregar un Dueño de Apartamento\n" +
                 "4. Agregar un Arrendatario\n" +
-                "5. Consultar cuantos disponibles apartamentos hay en un edificio\n" +
-                "6. Consultar el arriendo de todos los apartamentos de un edificio\n" +
-                "7. Consultar si un apartamento esta disponible\n" +
-                "8. Consultar los apartamentos de un Dueño\n" +
-                "9. Consultar el arriendo de todos los apartamentos de un dueño\n" +
+                "5. Consultar cuantos Apartamentos disponibles hay en un edificio\n" +
+                "6. Consultar el valor a recibir por todos los Apartamentos de un Edificio\n" +
+                "7. Consultar si un Apartamento esta disponible\n" +
+                "8. Consultar los Apartamentos de un Dueño\n" +
+                "9. Consultar el arriendo de todos los Apartamentos de un Dueño\n" +
 				"0. Salir del Programa. ");
 		option = validateIntegerOption();
 		return option; 
@@ -81,7 +81,7 @@ public class Main{
 				break; 
 
             case 9:
-				
+				showOwnerApartmentsRent();
 				break; 
 
 			case 0: 
@@ -107,42 +107,66 @@ public class Main{
 		String buildingId=reader.next();
 		System.out.println("Escribe el numero del apartamento");
 		int apartmentNumber=validateIntegerOption();
-		while(apartmentNumber==-1){
-			System.out.println("Escribe un numero entero");
+		while(apartmentNumber==-1 || apartmentNumber<0){
+			System.out.println("Escribe un numero valido");
 			apartmentNumber=validateIntegerOption();
 		}
 		System.out.println("Escribe el numero de habitaciones");
 		int rooms=validateIntegerOption();
-		while(rooms==-1){
-			System.out.println("Escribe un numero entero");
+		while(rooms==-1 || rooms<0){
+			System.out.println("Escribe un numero valido");
 			rooms=validateIntegerOption();
 		}
 		System.out.println("Escribe el numero de baños");
 		int bathrooms=validateIntegerOption();
-		while(bathrooms==-1){
-			System.out.println("Escribe un numero entero");
+		while(bathrooms==-1 || bathrooms<0){
+			System.out.println("Escribe un numero valido");
 			bathrooms=validateIntegerOption();
 		}
-		System.out.println("Presiona 0 si el apartamento tiene balcon, de lo contrario presiona 1");
+		System.out.println("Presiona 1 si el apartamento tiene balcon, de lo contrario presiona 2");
 		int optionBalcony=validateIntegerOption();
-		while(optionBalcony<0 || optionBalcony>1){
-			System.out.println("Escribe 0 o 1");
+		while(optionBalcony<1 || optionBalcony>2){
+			System.out.println("Escribe 1 o 2");
 			optionBalcony=validateIntegerOption();
 		}
 		boolean hasBalcony=false;
-		if(optionBalcony==0){
+		if(optionBalcony==1){
 			hasBalcony=true;
 		}
 		System.out.println("Escribe la renta mensual del apartamento");
 		double rent=validateIntegerOption();
-		while(rent==-1){
-			System.out.println("Escribe un numero");
+		while(rent==-1 || rent<0){
+			System.out.println("Escribe un numero valido");
 			rent=validateIntegerOption();
 		}
-		System.out.println(realEstate.addApartment(buildingId, apartmentNumber, rooms, bathrooms, hasBalcony, rent));
+		System.out.println("Escribe 1 si el apartamento tiene Arrendatario, de lo contrario 2");
+		int optionTenant=validateIntegerOption();
+		while (optionTenant>2 || optionTenant<1) {
+			System.out.println("Escribe una opcion valida");
+			optionTenant=validateIntegerOption();
+		}
+		String idTenant=null;
+		if(optionTenant==1){
+			System.out.println("Escribe el id del Arrendatario");
+			idTenant=reader.next();
+		}
+		System.out.println("Escribe 1 si el apartamento tiene Dueño, de lo contrario 2");
+		int optionOwner=validateIntegerOption();
+		while (optionOwner>2 || optionOwner<1) {
+			System.out.println("Escribe una opcion valida");
+			optionOwner=validateIntegerOption();
+		}
+		String idOwner=null;
+		if(optionOwner==1){
+			System.out.println("Escribe el id del Dueño");
+			idOwner=reader.next();
+		}
+		System.out.println(realEstate.addApartment(buildingId, apartmentNumber, rooms, bathrooms, hasBalcony, rent, idTenant, idOwner));
 	}
 
 	public void addOwner(){
+		System.out.println("Escribe el tipo de id del Dueño");
+		String typeId=reader.next();
 		System.out.println("Escribe el id del Dueño");
 		String id=reader.next();
 		System.out.println("Escribe su nombre completo");
@@ -162,8 +186,12 @@ public class Main{
 		System.out.println("Escribe el nombre del banco al que pertenece");
 		String bankName=reader.next();
 		System.out.println("Escribe el numero de cuenta");
-		String bankAccount=reader.next();
-		int isAdded=realEstate.addOwner(id, fullName, phoneNumber, optionTypePhone, bankAccount, bankName);
+		int bankAccount=validateIntegerOption();
+		while(bankAccount==-1){
+			System.out.println("Escribe un numero valido");
+			bankAccount=validateIntegerOption();
+		}
+		int isAdded=realEstate.addOwner(typeId,id, fullName, phoneNumber, optionTypePhone, bankAccount, bankName);
 		if(isAdded==1){
 			System.out.println("El Dueño fue agregado correctamente");
 			int assignApartments=1;
@@ -194,6 +222,8 @@ public class Main{
 	}
 
 	public void addTenant(){
+		System.out.println("Escribe el tipo de id del Arrendatario");
+		String typeId=reader.next();
 		System.out.println("Escribe el id del Arrendatario");
 		String id=reader.next();
 		System.out.println("Escribe su nombre completo");
@@ -218,7 +248,7 @@ public class Main{
 			System.out.println("Escribe un numero entero");
 			apartmentNumber=validateIntegerOption();
 		}
-		System.out.println(realEstate.addTenant(id, fullName, phoneNumber, optionTypePhone, buildingId, apartmentNumber));
+		System.out.println(realEstate.addTenant(typeId,id, fullName, phoneNumber, optionTypePhone, buildingId, apartmentNumber));
 	}
 
 	public void showEmptyApartmentsOfABuilding(){
@@ -240,12 +270,19 @@ public class Main{
 			System.out.println("Escribe un numero entero");
 			apartmentNumber=validateIntegerOption();
 		}
+		System.out.println(realEstate.checkApartmentAvalibility(apartmentNumber));
 	}
 
 	public void showOwnerApartmentsRented(){
 		System.out.println("Escribe el id del Dueño");
 		String id=reader.next();
 		System.out.println(realEstate.showOwnerApartmentsRented(id));
+	}
+
+	public void showOwnerApartmentsRent(){
+		System.out.println("Escribe el id del Dueño");
+		String id=reader.next();
+		System.out.println(realEstate.showOwnerApartmentsRent(id));
 	}
 
 	/**validateIntegerOption= Validates if the user input is a integer number

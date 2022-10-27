@@ -2,12 +2,12 @@ package model;
 
 public class Owner extends Person {
     public static final int SIZE_OF_APARTMENTS=500;
-    private String bankAccount;
+    private int bankAccount;
     private String bankName;
     private Apartment apartments[];
 
-    public Owner(String id, String fulName,int phoneNumber, int optionTypePhone, String bankAccount, String bankName){
-        super(id, fulName, phoneNumber, optionTypePhone);
+    public Owner(String typeId,String id, String fulName,int phoneNumber, int optionTypePhone, int bankAccount, String bankName){
+        super(typeId,id, fulName, phoneNumber, optionTypePhone);
         this.bankAccount=bankAccount;
         this.bankName=bankName;
         apartments= new Apartment[SIZE_OF_APARTMENTS];

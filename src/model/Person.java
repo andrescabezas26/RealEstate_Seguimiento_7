@@ -1,12 +1,14 @@
 package model;
 
 public abstract class Person{
+    private String typeId;
     private String id;
     private String fullName;
     private int phoneNumber;
     private TypePhone typePhone;
 
-    public Person(String id, String fulName,int phoneNumber, int optionTypePhone){
+    public Person(String typeId,String id, String fulName,int phoneNumber, int optionTypePhone){
+        this.typeId=typeId;
         this.id=id;
         this.fullName=fulName;
         this.phoneNumber=phoneNumber;
@@ -15,10 +17,6 @@ public abstract class Person{
 
     public String getId() {
         return id;
-    }
-
-    public String getFullName() {
-        return fullName;
     }
 
 }

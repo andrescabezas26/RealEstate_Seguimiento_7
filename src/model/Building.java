@@ -24,13 +24,13 @@ public class Building{
         return apartments;
     }
 
-    public String addApartmentWithObject(Apartment apartment){
-        String msj="Capacidad Maxima de Apartamentos Alcanzada";
+    public int addApartmentWithObject(Apartment apartment){
+        int confirmation=-1;
         if(buildingHasEmptyPos()!=-1){
             apartments[buildingHasEmptyPos()]=apartment;
-            msj="Apartamento agregado correctamente al edificio " + this.buildingId;
+            confirmation=1;
         }
-        return msj;
+        return confirmation;
     }
 
     public int searchApartmentByNumber(int apartmentNumber){

@@ -6,34 +6,23 @@ public class Apartment {
     private int bathrooms;
     private boolean hasBalcony;
     private Person tenant;
-    private Owner owner;
+    private Person owner;
     private double rent;
 
-    public Apartment(int apartmentNumber,int rooms,int bathrooms, boolean hasBalcony, double rent){
+    public Apartment(int apartmentNumber,int rooms,int bathrooms, boolean hasBalcony, double rent, Person tenat ){
         this.apartmentNumber=apartmentNumber;
         this.rooms=rooms;
         this.bathrooms=bathrooms;
         this.hasBalcony=hasBalcony;
         this.rent=rent;
+        this.tenant=tenat;
     }
 
     public int getApartmentNumber() {
         return apartmentNumber;
     }
 
-    public int getBathrooms() {
-        return bathrooms;
-    }
-
-    public int getRooms() {
-        return rooms;
-    }
-
-    public void setTenant(Person tenant) {
-        this.tenant = tenant;
-    }
-
-    public Owner getOwner() {
+    public Person getOwner() {
         return owner;
     }
     public Person getTenant() {
@@ -41,5 +30,13 @@ public class Apartment {
     }
     public double getRent() {
         return rent;
+    }
+
+    public void setTenant(Person tenant) {
+        this.tenant = tenant;
+    }
+
+    public void setOwner(Person owner) {
+        this.owner = owner;
     }
 }
