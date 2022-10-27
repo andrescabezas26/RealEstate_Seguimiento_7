@@ -36,8 +36,8 @@ public class Main{
 				"2. Agregar un Apartamento a un Edificio\n" +
 				"3. Agregar un Dueño de Apartamento\n" +
                 "4. Agregar un Arrendatario\n" +
-                "5. Consultar cuantos Apartamentos disponibles hay en un edificio\n" +
-                "6. Consultar el valor a recibir por todos los Apartamentos de un Edificio\n" +
+                "5. Consultar cuantos Apartamentos disponibles hay en un Edificio\n" +
+                "6. Consultar el valor mensual total de todos los Apartamentos de un Edificio\n" +
                 "7. Consultar si un Apartamento esta disponible\n" +
                 "8. Consultar los Apartamentos de un Dueño\n" +
                 "9. Consultar el arriendo de todos los Apartamentos de un Dueño\n" +

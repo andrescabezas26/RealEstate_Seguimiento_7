@@ -167,7 +167,6 @@ public class RealEstate{
 
     public String showApartmentsRentOfABuilding(String buildingId){
         double apartmentsRent=0;
-        double realEstateRent=0;
         msj="El edificio " + buildingId + " no existe";
         int buildingPos=searchBuildingById(buildingId);
         if(buildingPos!=-1){
@@ -175,11 +174,10 @@ public class RealEstate{
                 if(buildings[buildingPos].getApartments()[i]!=null){
                     if(buildings[buildingPos].getApartments()[i].getTenant()!=null){
                         apartmentsRent+=buildings[buildingPos].getApartments()[i].getRent();
-                        realEstateRent+=apartmentsRent*MANAGEMENT_CONCEPT;
                     }
                 }
             }
-            msj="El valos mensual a recibir por los apartamentos del Edificio " + buildingId + " es  $" + realEstateRent;
+            msj="El valos mensual a recibir por los apartamentos del Edificio " + buildingId + " es  $" + apartmentsRent;
         }
         return msj;
     }
